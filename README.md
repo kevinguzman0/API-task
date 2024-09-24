@@ -37,8 +37,8 @@ Before you begin, make sure you have the following installed:
 4. Create an environment file .env to configure the necessary environment variables:
 
     ```bash
+    MONGO_URI=mongodb://localhost/tasksdb
     PORT=3000
-    MONGODB_URI=mongodb://localhost:27017/your_database
 
 5. Start the application:
 
