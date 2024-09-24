@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  # Service for the Node.js backend
+  backend:
+    build: .
+    ports:
+      - "3000:3000" # Exposes port 3000 to access the backend from outside
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/tasksdb
+    depends_on:
+      - mongo # Waits for MongoDB to be available
+    volumes:
+      - .:/usr/src/app # Mount local code to facilitate development
+    networks:
+      - app-network
+
+  # Service for MongoDB
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017" # Exposes the port to connect to the database
+    networks:
+      - app-network
+    volumes:
+      - mongo-data:/data/db # Persist data if necessary
+
+# Define the shared network between the backend and the database
+networks:
+  app-network:
+
+volumes:
+  mongo-data: # Persistent storage for MongoDB
