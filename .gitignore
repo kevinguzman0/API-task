@@ -39,3 +39,4 @@ Thumbs.db
 
 # PM2 logs and files
 pm2/
+package-lock.json
